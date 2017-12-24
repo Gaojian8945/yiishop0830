@@ -1,3 +1,25 @@
+#webupload的运用
+```angular2html
+public function actionUpload(){
+        //var_dump($_FILES);exit;
+        $file = UploadedFile::getInstanceByName("file");
+        //var_dump($file);exit;
+        if ($file) {
+            //路径
+            $path="imgs/".time().".".$file->extension;
+            //移动图片
+            if ($file->saveAs($path,false)) {
+                // {"code": 0, "url": "http://domain/图片地址", "attachment": "图片地址"}
+                $result=[
+                    'code'=>0,
+                    'url'=>'/'.$path,
+                    'attachment'=>$path
+                ];
+                return json_encode($result);
+            }
+        }
+    }
+```
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">

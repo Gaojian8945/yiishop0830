@@ -147,9 +147,6 @@ class BrandController extends \yii\web\Controller
             }
 
         }
-        //var_dump($file);exit;
-        //{"code": 0, "url": "http://domain/图片地址", "attachment": "图片地址"}
-
     }
     public function actionDel($id){
         if (Brand::findOne($id)->delete()) {

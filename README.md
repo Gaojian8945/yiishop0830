@@ -1,4 +1,6 @@
-#webupload的运用
+#项目介绍
+#技术难点
+##1.webupload的运用，提升用户体验
 ```angular2html
 public function actionUpload(){
         //var_dump($_FILES);exit;

@@ -1,4 +1,4 @@
-<a href="<?=\yii\helpers\Url::to('index')?>" class="btn btn-info">文章首页</a><a href="<?=\yii\helpers\Url::to('add')?>" class="btn btn-info">添加</a><a href="<?=\yii\helpers\Url::to('recycle')?>" class="btn btn-danger">回收站</a>
+<a href="<?=\yii\helpers\Url::to('index')?>" class="btn btn-info">文章首页</a><a href="<?=\yii\helpers\Url::to('/article/add')?>" class="btn btn-info">添加</a><a href="<?=\yii\helpers\Url::to('recycle')?>" class="btn btn-danger">回收站</a>
 <table class="table tab-content">
     <tr>
         <th>ID</th>

@@ -36,7 +36,25 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => '品牌导航',
+            'items'=>[
+                ['label' => '品牌首页', 'url' => ['/brand/index']],
+            ]
+        ],
+        ['label' => '文章导航',
+            'items'=>[
+                ['label' => '文章首页', 'url' => ['/article/index']],
+                ['label' => '文章分类', 'url' => ['/article-category/index']],
+            ]
+        ],
+
+        ['label' => '商品导航',
+            'items'=>[
+                ['label' => '商品首页', 'url' => ['/goods/index']],
+                ['label' => '商品分类', 'url' => ['/goods-category/index']],
+            ]
+        ],
+
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

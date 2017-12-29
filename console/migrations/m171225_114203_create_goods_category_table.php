@@ -16,7 +16,10 @@ class m171225_114203_create_goods_category_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->comment('分类名称'),
             'parent_id' => $this->integer()->comment('父类id'),
-            'left' => $this->integer()
+            'tree' => $this->integer()->notNull()->comment('树'),
+            'lft' => $this->integer()->notNull()->comment('左值'),
+            'rgt' => $this->integer()->notNull()->comment('右值'),
+            'depth' => $this->integer()->notNull()->comment('深度'),
         ]);
     }
 

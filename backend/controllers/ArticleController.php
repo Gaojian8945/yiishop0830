@@ -39,7 +39,6 @@ class ArticleController extends \yii\web\Controller
             $row = Article::findOne($id);
             $row->status=$status;
             $row->save();
-            $this->redirect('recycle');
         }
         return $this->render('index',compact('models'));
     }
@@ -60,7 +59,7 @@ class ArticleController extends \yii\web\Controller
             $model->load($resquest->post());
             if ($model->validate()) {
                 $model->save();
-                $this->redirect('index');
+                //$this->redirect('index');
             }
             //文章详情入库
             if ($detail->load($resquest->post())) {

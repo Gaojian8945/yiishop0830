@@ -1,4 +1,23 @@
-<a href="<?=\yii\helpers\Url::to('/goods/add')?>" class="btn btn-info">添加</a><a href="<?=\yii\helpers\Url::to('/goods/recycle')?>" class="btn btn-danger">回收站</a><a href="<?=\yii\helpers\Url::to('/goods/')?>" class="btn btn-danger">首页</a>
+<div class="row">
+    <div class="pull-left">
+        <?=\yii\bootstrap\Html::a("添加",['add'],['class'=>"btn btn-info"])?>
+    </div>
+    <div class="pull-right">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" size="3" class="form-control" name='minPrice' placeholder="最低价" value="<?=Yii::$app->request->get('minPrice')?>">
+            </div>
+            -
+            <div class="form-group">
+                <input type="text" size="3" class="form-control" name="maxPrice" placeholder="最高价" value="<?=Yii::$app->request->get('maxPrice')?>">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="keyword" placeholder="请输入名称或货号" value="<?=Yii::$app->request->get('keyword')?>">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+        </form>
+    </div>
+</div>
 <table class="table tab-content">
     <tr>
         <th>ID</th>
@@ -26,7 +45,11 @@
             <td><?=$row->is_on_sale?></td>
             <td><?=$row->sort?></td>
             <td><?=date('Y-m-d H:i:s',$row->inputtime)?></td>
-            <td><td><?php if($row->status == 1){echo "<a href=\"<?=\yii\helpers\Url::to(['edit','id'=>$row->id])?>\" class=\"btn btn-info\">修改</a><a href='".\yii\helpers\Url::to('index?status=0&id='.$row->id)."' class='btn btn-danger'>移入回收站</a>";}else{echo "<a href='".\yii\helpers\Url::to('recycle?status=1&id='.$row->id)."' class='btn btn-danger'>返回显示页面</a>";}?><a href="<?=\yii\helpers\Url::to(['del','id'=>$row->id])?>" class="btn btn-info">删除</a> </td></td>
+            <td><a href="<?=\yii\helpers\Url::to(['edit','id'=>$row->id])?>" class="btn btn-info">修改</a><a href="<?=\yii\helpers\Url::to(['del','id'=>$row->id])?>" class="btn btn-info">删除</a> </td></td>
         </tr>
     <?php endforeach;?>
 </table>
+
+<?php echo \yii\widgets\LinkPager::widget([
+'pagination' => $pages,
+]);

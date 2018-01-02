@@ -22,6 +22,7 @@ use Yii;
  */
 class Goods extends \yii\db\ActiveRecord
 {
+    public $imgFiles;//显示多图
     /**
      * @inheritdoc
      */
@@ -36,10 +37,9 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'sn', 'category_id', 'market_price'], 'required'],
-            [['category_id', 'stock', 'is_on_sale', 'status', 'sort', 'inputtime'], 'integer'],
+            [['name', 'category_id', 'market_price','brand_id'], 'required'],
             [['market_price', 'shop_price'], 'number'],
-            [['name', 'sn', 'logo'], 'string', 'max' => 50],
+            [['imgFiles','logo'],'safe']
         ];
     }
 
@@ -67,5 +67,9 @@ class Goods extends \yii\db\ActiveRecord
     public function getGoodsIntro()
     {
         $this->hasOne(GoodsIntro::className(),['goods_id'=>'id']);
+    }
+
+    public function getGoodsGallery(){
+        $this->hasMany(GoodsGallery::className(),['goods_id'=>'id']);
     }
 }

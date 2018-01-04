@@ -41,8 +41,9 @@ class GoodsController extends \yii\web\Controller
         if ($keyword){
             $rows->andWhere("name like '%{$keyword}%' or sn like '%{$keyword}%'");
         }
-        if ($status==='1'){
-            $rows->andWhere('status=1');
+        //判断状态 $status==='0' or $status==='1'  必需是全等号 接收的值都是字符串
+        if (in_array($status,['0','1'])){
+            $rows->andWhere(['status'=>$status]);
         }
         $pages = new Pagination(
             [

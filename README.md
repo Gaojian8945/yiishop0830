@@ -105,6 +105,9 @@ composer global require "fxp/composer-asset-plugin:^1.3.0"
 ###	建立控制器
 ###	建立视图
 
+# RBAC权限管理
+##
+
 
 ```
 common

@@ -5,6 +5,13 @@
     <div class="pull-right">
         <form class="form-inline">
             <div class="form-group">
+                <select class="form-control" name="status">
+                    <option>选择状态</option>
+                    <option value="1" <?=Yii::$app->request->get('status')==="1"?"selected":""?>>上架</option>
+                    <option value="0" <?=Yii::$app->request->get('status')==="0"?"selected":""?>>下架</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <input type="text" size="3" class="form-control" name='minPrice' placeholder="最低价" value="<?=Yii::$app->request->get('minPrice')?>">
             </div>
             -

@@ -83,8 +83,16 @@ class AdminController extends \yii\web\Controller
                 if ($admin->save()) {
 
                     \Yii::$app->user->login($admin,3600*24*7);
+
+
+                    $name = $auth->getAssignments($admin->getId());
+                    //找到角色
+                    $role = $auth->getRole(array_keys($name)[0]);
+                    //解除用户和组（角色）的关系
+                    $auth->revoke($role,$admin->getId());
                     //找到角色对应的权限
                     $role=$auth->getRole($admin->rulea);
+                    //var_dump($role);exit;
                     //给用户分组
                     if ($auth->assign($role,$admin->id)) {
                         \Yii::$app->session->setFlash('success','编辑成功');
@@ -151,5 +159,22 @@ class AdminController extends \yii\web\Controller
         if (\Yii::$app->user->logout()) {
             return $this->redirect(['login']);
         }
+    }
+    public function actionDel($id){
+        $auth = \Yii::$app->authManager;
+        if (Admin::findOne($id)->delete()) {
+            $name = $auth->getAssignments($id);
+            if($name){
+                //找到角色
+                $role = $auth->getRole(array_keys($name)[0]);
+                //解除用户和组（角色）的关系
+                if ($auth->revoke($role,$id)) {
+                    \Yii::$app->session->setFlash('success','删除和解除权限用户成功');
+                }
+            }
+            \Yii::$app->session->setFlash('success','删除用户成功');
+            return $this->redirect('index');
+        }
+
     }
 }

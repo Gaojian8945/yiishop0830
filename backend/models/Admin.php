@@ -29,7 +29,7 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'create' => ['username', 'password_hash', 'email'],
             'update' => ['username', 'email'],
-            'default' => ['username','email','rulea']
+            'default' => ['username','email','rulea','password_hash']
         ];
     }
     /**

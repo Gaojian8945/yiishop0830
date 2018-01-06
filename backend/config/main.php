@@ -46,6 +46,7 @@ return [
                 ],
             ],
         ],
+        
         'user' => [
             'identityClass' => \backend\models\Admin::className(),//用那个模型来实现用户的操作
             'enableAutoLogin' => true,

@@ -137,7 +137,7 @@ class AdminController extends \yii\web\Controller
                         $admin->last_login_ip=ip2long(\Yii::$app->request->userIP);
                         $admin->save();
                         //跳转
-                        return $this->redirect('index');
+                        return $this->redirect('/site/index');
                     }else{
                         //密码错误
                         $model->addError('password','密码错误');

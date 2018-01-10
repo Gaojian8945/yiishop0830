@@ -23,6 +23,7 @@ class BrandController extends \yii\web\Controller
         $request = \Yii::$app->request;
         //判断是否是post提交
         if ($request->isPost) {
+            //var_dump($request->post());exit;
             //绑定数据
             $brand->load($request->post());
             //验证

@@ -64,12 +64,14 @@ class Goods extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getGoodsIntro()
+    public function getIntro()
     {
-        $this->hasOne(GoodsIntro::className(),['goods_id'=>'id']);
+        return $this->hasOne(GoodsIntro::className(),['goods_id'=>'id']);
     }
 
-    public function getGoodsGallery(){
-        $this->hasMany(GoodsGallery::className(),['goods_id'=>'id']);
+
+    //得到商品对应的所有图片  1对多
+    public function getImages(){
+        return $this->hasMany(GoodsGallery::className(),['goods_id'=>'id']);
     }
 }

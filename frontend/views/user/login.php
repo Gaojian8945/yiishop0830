@@ -104,7 +104,7 @@
 
 	<div style="clear:both;"></div>
 	<!-- 底部版权 start -->
-<?=\frontend\widgets\CopyrightWidget::widget()?>
+
 	<!-- 底部版权 end -->
 <script type="application/javascript">
 

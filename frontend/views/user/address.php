@@ -70,62 +70,58 @@
 		<div class="content fl ml10">
 			<div class="address_hd">
 				<h3>收货地址薄</h3>
+                <?php foreach (\frontend\models\Address::find()->orderBy('default')->all() as $k => $v):?>
 				<dl>
-					<dt>1.许坤 北京市 昌平区 仙人跳区 仙人跳大街 17002810530 </dt>
+					<dt><?=$k?>.<?=$v->name?> <?=$v->province?> <?=$v->city?> <?=$v->area?> <?=$v->detail?> <?=$v->tel?> </dt>
 					<dd>
 						<a href="">修改</a>
 						<a href="">删除</a>
 						<a href="">设为默认地址</a>
 					</dd>
 				</dl>
-				<dl class="last"> <!-- 最后一个dl 加类last -->
-					<dt>2.许坤 四川省 成都市 高新区 仙人跳大街 17002810530 </dt>
-					<dd>
-						<a href="">修改</a>
-						<a href="">删除</a>
-						<a href="">设为默认地址</a>
-					</dd>
-				</dl>
+                <?php endforeach;?>
 
 			</div>
 
 			<div class="address_bd mt10">
 				<h4>新增收货地址</h4>
-				<form action="" name="address_form">
+				<form action="" name="address_form" method="post">
+
+                    <input type="hidden" name="_csrf-frontend" value="<?=Yii::$app->request->csrfToken?>"/>
 						<ul>
 							<li>
 								<label for=""><span>*</span>收 货 人：</label>
-								<input type="text" name="" class="txt" />
+								<input type="text" name="Address[name]" class="txt" />
 							</li>
 							<li>
 								<label for=""><span>*</span>所在地区：</label>
-								<select name="province3" id="province" onchange="doProvAndCityRelation();">
+								<select name="Address[province]" id="province" onchange="doProvAndCityRelation();">
 									　<option id="choosePro"value="-1">请选择您所在省份</option>
 								</select>
 
-								<select name="city3" id="citys">
-									<option id='chooseCity' value='-1'>请选择您所在城市</option>
+								<select name="Address[city]" id="citys">
+									<option id='chooseCity' value='-1'></option>
 								</select>
 
-								<select name="area3" id="county">
-									<option id='chooseCounty' value='-1'>请选择您所在区/县</option>
+								<select name="Address[area]" id="county">
+									<option id='chooseCounty' value='-1'></option>
 								</select>
 							</li>
 							<li>
 								<label for=""><span>*</span>详细地址：</label>
-								<input type="text" name="" class="txt address"  />
+								<input type="text" name="Address[detail]" class="txt address"  />
 							</li>
 							<li>
 								<label for=""><span>*</span>手机号码：</label>
-								<input type="text" name="" class="txt" />
+								<input type="text" name="Address[tel]" class="txt" />
 							</li>
 							<li>
 								<label for="">&nbsp;</label>
-								<input type="checkbox" name="" class="check" />设为默认地址
+								<input type="checkbox" name="Address[default]" value="1" class="check" />设为默认地址
 							</li>
 							<li>
 								<label for="">&nbsp;</label>
-								<input type="submit" name="" class="btn" value="保存" />
+								<input type="submit" class="btn" value="保存" />
 							</li>
 						</ul>
 					</form>
@@ -231,7 +227,7 @@
         <script language="javascript" defer>
 
 
-            new PCAS("province3","city3","area3");
+            new PCAS("Address[province]","Address[city]","Address[area]");
 
 
         </script>

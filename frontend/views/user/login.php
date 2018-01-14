@@ -48,7 +48,7 @@
 		</div>
 		<div class="login_bd">
 			<div class="login_form fl">
-				<form action="" method="post">
+				<form action="<?=\yii\helpers\Url::to(['user/login','default'=>$default])?>" method="post">
                     <input type="hidden" name="_csrf-frontend" value="<?=Yii::$app->request->csrfToken?>"/>
 					<ul>
 						<li>
@@ -97,14 +97,12 @@
 
 				<a href="/user/regist" class="reg_btn">免费注册 >></a>
 			</div>
-
 		</div>
 	</div>
 	<!-- 登录主体部分end -->
 
 	<div style="clear:both;"></div>
 	<!-- 底部版权 start -->
-
 	<!-- 底部版权 end -->
 <script type="application/javascript">
 
